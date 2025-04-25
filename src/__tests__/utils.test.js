@@ -2,15 +2,27 @@
 import { isPalindrome } from "../utils";
 
 describe("isPalindrome", () => {
-  it("should return true for a simple palindrome", () => {
-    const word = "racecar";
-    const result = isPalindrome(word);
-    expect(result).toBe(true);
+  it("returns true for a basic palindrome", () => {
+    expect(isPalindrome("racecar")).toBe(true);
   });
 
-  it("should return false for a non-palindrome", () => {
-    const word = "car";
-    const result = isPalindrome(word);
-    expect(result).toBe(false);
+  it("returns false for a non-palindrome", () => {
+    expect(isPalindrome("car")).toBe(false);
+  });
+
+  it("is case-insensitive", () => {
+    expect(isPalindrome("RaceCar")).toBe(true);
+  });
+
+  it("returns false for an empty string", () => {
+    expect(isPalindrome("")).toBe(false);
+  });
+
+  it("throws an error for non-alphabetic characters", () => {
+    expect(() => isPalindrome("race-car")).toThrow("Only alphabetic characters allowed.");
+  });
+
+  it("throws an error if input is not a string", () => {
+    expect(() => isPalindrome(123)).toThrow("Input must be a string.");
   });
 });
